@@ -71,7 +71,7 @@ uploadForm.onsubmit = async (e) => {
     }, 300);
 
     try {
-        const response = await fetch('http://localhost:5000/compress', {
+        const response = await fetch('https://kompresin-2-0.onrender.com/compress', {
             method: 'POST',
             body: formData
         });
