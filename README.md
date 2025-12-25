@@ -2,6 +2,8 @@
 
 🔗 **Live Demo:** [https://kompresin-2-0.onrender.com](https://kompresin-2-0.onrender.com)
 
+![Preview Kompresin 2.0](screenshots/preview.png)
+
 Aplikasi kompresi data berbasis web dengan backend Python (Flask) dan frontend modern (HTML, CSS, JS).
 
 ## Struktur Project
