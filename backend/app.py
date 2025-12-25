@@ -6,12 +6,11 @@ import mimetypes
 from werkzeug.utils import secure_filename
 from PIL import Image
 import zipfile
-import subprocess
 
 app = Flask(__name__)
 CORS(app)
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'bmp', 'mp4', 'mov', 'avi', 'mkv', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'zip', 'rar'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'bmp', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'zip', 'rar'])
 
 
 def allowed_file(filename):
@@ -37,6 +36,20 @@ def compress_file():
     input_path = os.path.join(temp_dir, filename)
     file.save(input_path)
 
+    # Ambil level kompresi dari request (default: normal)
+    level = request.form.get('level', 'normal')
+    
+    # Tentukan quality berdasarkan level
+    # light = kualitas tinggi (kompresi sedikit)
+    # normal = seimbang
+    # max = kompresi maksimal (kualitas rendah)
+    quality_map = {
+        'light': 80,   # ~20% kompresi
+        'normal': 60,  # ~40% kompresi
+        'max': 30      # ~60% kompresi
+    }
+    quality = quality_map.get(level, 60)
+
     # Kompresi sesuai tipe file
     if ext in ['jpg', 'jpeg', 'png', 'bmp', 'gif']:
         # Kompresi gambar
@@ -44,37 +57,35 @@ def compress_file():
         try:
             img = Image.open(input_path)
             if ext in ['jpg', 'jpeg']:
-                img.save(output_path, quality=60, optimize=True)
+                img.save(output_path, quality=quality, optimize=True)
             else:
+                # Untuk PNG/GIF, konversi ke format yang lebih kecil jika level max
+                if level == 'max' and ext == 'png':
+                    # Reduce colors for PNG on max compression
+                    if img.mode in ('RGBA', 'LA'):
+                        background = Image.new('RGB', img.size, (255, 255, 255))
+                        background.paste(img, mask=img.split()[-1])
+                        img = background
+                    img = img.convert('P', palette=Image.ADAPTIVE, colors=256)
                 img.save(output_path, optimize=True)
         except Exception as e:
             return jsonify({"error": f"Gagal kompres gambar: {str(e)}"}), 500
         return send_file(output_path, as_attachment=True, download_name=f"compressed_{filename}")
 
-    elif ext in ['mp4', 'mov', 'avi', 'mkv']:
-        # Kompresi video (menggunakan ffmpeg, bitrate rendah)
-        output_path = os.path.join(temp_dir, f"compressed_{filename}")
-        try:
-            cmd = [
-                'ffmpeg', '-i', input_path,
-                '-b:v', '800k', '-bufsize', '800k',
-                '-vf', 'scale=iw*0.7:ih*0.7',
-                '-preset', 'fast',
-                '-y', output_path
-            ]
-            result = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        except subprocess.CalledProcessError as e:
-            error_msg = e.stderr.decode(errors='ignore')
-            return jsonify({"error": f"Gagal kompres video: {error_msg}"}), 500
-        except Exception as e:
-            return jsonify({"error": f"Gagal kompres video: {str(e)}"}), 500
-        return send_file(output_path, as_attachment=True, download_name=f"compressed_{filename}")
 
     else:
         # Kompresi file umum ke ZIP
+        # Level ZIP: 1-9 (1=fastest, 9=best compression)
+        zip_level_map = {
+            'light': 3,   # Fast compression
+            'normal': 6,  # Balanced
+            'max': 9      # Maximum compression
+        }
+        zip_level = zip_level_map.get(level, 6)
+        
         zip_path = os.path.join(temp_dir, f"compressed_{filename}.zip")
         try:
-            with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED, compresslevel=zip_level) as zipf:
                 zipf.write(input_path, arcname=filename)
         except Exception as e:
             return jsonify({"error": f"Gagal kompres file: {str(e)}"}), 500

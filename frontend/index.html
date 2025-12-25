@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
+
 <body>
     <header>
         <h1>Kompresin 2.0</h1>
@@ -20,10 +22,7 @@
                 <b>File Umum</b><br>
                 <span class="format-list">pdf, doc, docx, ppt, pptx, xls, xlsx, txt, zip, rar</span>
             </div>
-            <div class="format-box">
-                <b>Video</b><br>
-                <span class="format-list">mp4, mov, avi, mkv</span>
-            </div>
+
             <div class="format-box">
                 <b>Gambar</b><br>
                 <span class="format-list">jpg, jpeg, png, gif, bmp</span>
@@ -33,6 +32,26 @@
             <div class="compress-title">Upload & Kompres File Anda</div>
             <div class="compress-subtitle">Mudah & cepat!</div>
             <form id="upload-form">
+                <div class="compression-level">
+                    <div class="level-title">Pilih Level Kompresi:</div>
+                    <div class="level-options">
+                        <label class="level-option">
+                            <input type="radio" name="level" value="light" id="level-light">
+                            <span class="level-label">🌱 Ringan</span>
+                            <span class="level-desc">Kualitas tinggi, kompresi ~20%</span>
+                        </label>
+                        <label class="level-option">
+                            <input type="radio" name="level" value="normal" id="level-normal" checked>
+                            <span class="level-label">⚖️ Normal</span>
+                            <span class="level-desc">Seimbang, kompresi ~40%</span>
+                        </label>
+                        <label class="level-option">
+                            <input type="radio" name="level" value="max" id="level-max">
+                            <span class="level-label">🔥 Maksimal</span>
+                            <span class="level-desc">Ukuran kecil, kompresi ~60%</span>
+                        </label>
+                    </div>
+                </div>
                 <label for="file-input" class="custom-file-label">Pilih File</label>
                 <span class="selected-file" id="selected-file">Belum ada file dipilih</span>
                 <input type="file" id="file-input" name="file" required>
@@ -59,4 +78,5 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html> 
+
+</html>

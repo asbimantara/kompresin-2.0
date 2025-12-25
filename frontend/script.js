@@ -59,8 +59,13 @@ uploadForm.onsubmit = async (e) => {
     // Tampilkan nama file yang dikompres
     notification.innerHTML = `<span class='filename'>${ellipsis(file.name, 30)}</span> sedang dikompres...`;
 
+    // Ambil level kompresi yang dipilih
+    const levelRadio = document.querySelector('input[name="level"]:checked');
+    const level = levelRadio ? levelRadio.value : 'normal';
+
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('level', level);
 
     // Progress bar animasi loading
     let progress = 0;
@@ -71,7 +76,7 @@ uploadForm.onsubmit = async (e) => {
     }, 300);
 
     try {
-        const response = await fetch('https://kompresin-2-0.onrender.com/compress', {
+        const response = await fetch('http://localhost:5000/compress', {
             method: 'POST',
             body: formData
         });
@@ -116,8 +121,26 @@ uploadForm.onsubmit = async (e) => {
     }
 };
 
+// Daftar ekstensi yang diizinkan
+const ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'zip', 'rar'];
+
+function isAllowedFile(filename) {
+    const ext = filename.split('.').pop().toLowerCase();
+    return ALLOWED_EXTENSIONS.includes(ext);
+}
+
 fileInput.onchange = () => {
     if (fileInput.files.length > 0) {
-        selectedFile.textContent = ellipsis(fileInput.files[0].name, 30);
-    } // Jangan ubah apapun jika user batal memilih file
+        const file = fileInput.files[0];
+        if (!isAllowedFile(file.name)) {
+            // File tidak diizinkan (termasuk video)
+            notification.innerHTML = `<span style="color:#ff6b6b">❌ Format file <b>${file.name.split('.').pop().toUpperCase()}</b> tidak didukung. Silakan pilih file gambar atau dokumen.</span>`;
+            selectedFile.textContent = 'Belum ada file dipilih';
+            fileInput.value = ''; // Clear file input
+            return;
+        }
+        // File diizinkan
+        notification.textContent = '';
+        selectedFile.textContent = ellipsis(file.name, 30);
+    }
 }; 

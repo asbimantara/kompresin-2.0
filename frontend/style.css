@@ -7,19 +7,22 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     background: #23272a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 header h1 {
     margin: 0;
     font-size: 1.5rem;
     letter-spacing: 1px;
 }
+
 #info-btn {
     background: #fff;
     color: #23272a;
@@ -31,16 +34,18 @@ header h1 {
     font-weight: bold;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
 }
+
 #info-btn:active {
     transform: scale(0.95);
     box-shadow: 0 2px 8px #000a;
 }
+
 main {
     flex: 1;
     display: flex;
@@ -49,19 +54,22 @@ main {
     justify-content: center;
     padding: 2rem 1rem;
 }
-main > h2 {
+
+main>h2 {
     margin-top: 2.5rem;
 }
+
 .upload-section {
     background: #23272a;
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
     max-width: 400px;
     width: 100%;
     text-align: center;
     margin-bottom: 2.5rem;
 }
+
 footer {
     background: #23272a;
     color: #aaa;
@@ -70,25 +78,30 @@ footer {
     font-size: 1rem;
     letter-spacing: 1px;
 }
+
 .modal {
     position: fixed;
     z-index: 1000;
-    left: 0; top: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.6);
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .modal-content {
     background: #23272a;
     color: #f1f1f1;
     padding: 2rem 2.5rem;
     border-radius: 1rem;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
     text-align: center;
     position: relative;
 }
+
 .close {
     position: absolute;
     top: 1rem;
@@ -97,6 +110,7 @@ footer {
     color: #aaa;
     cursor: pointer;
 }
+
 .illustration {
     width: 120px;
     margin-bottom: 1.2rem;
@@ -105,25 +119,33 @@ footer {
     background: #23272a;
     padding: 0.5rem;
 }
+
 @media (max-width: 600px) {
     .upload-section {
         padding: 1rem;
         max-width: 95vw;
     }
+
     .modal-content {
         padding: 1rem 1.2rem;
     }
+
     .illustration {
         width: 80px;
     }
 }
+
 .welcome {
     margin-bottom: 0.7rem;
     font-size: 1.05rem;
     color: #b3e5fc;
     font-weight: 500;
 }
-.file-info { display: none; }
+
+.file-info {
+    display: none;
+}
+
 .progress-bar {
     width: 100%;
     height: 8px;
@@ -134,12 +156,14 @@ footer {
     display: flex;
     align-items: center;
 }
+
 .progress-bar-inner {
     height: 100%;
     background: linear-gradient(90deg, #00bcd4, #1976d2);
     width: 0%;
     transition: width 0.4s;
 }
+
 .filename {
     max-width: 180px;
     overflow: hidden;
@@ -148,6 +172,7 @@ footer {
     display: inline-block;
     vertical-align: bottom;
 }
+
 .format-row {
     display: flex;
     justify-content: center;
@@ -155,11 +180,12 @@ footer {
     margin: 1.2rem 0 1.5rem 0;
     flex-wrap: wrap;
 }
+
 .format-box {
     background: #23272a;
     color: #b3e5fc;
     border-radius: 0.7rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
     padding: 1rem 1.5rem;
     min-width: 120px;
     text-align: center;
@@ -167,6 +193,7 @@ footer {
     font-weight: 500;
     border: 1px solid #263238;
 }
+
 @media (max-width: 800px) {
     .format-row {
         flex-direction: column;
@@ -175,6 +202,7 @@ footer {
         margin-left: 1.2rem;
         margin-right: 1.2rem;
     }
+
     .format-box {
         width: 100%;
         min-width: unset;
@@ -183,11 +211,13 @@ footer {
         max-width: 400px;
         margin: 0 auto;
     }
+
     .welcome {
         text-align: center;
         margin-left: 1.2rem;
         margin-right: 1.2rem;
     }
+
     .upload-section {
         max-width: 98vw;
         margin-left: 1.2rem;
@@ -195,6 +225,7 @@ footer {
         box-sizing: border-box;
     }
 }
+
 .compress-title {
     font-size: 1.25rem;
     font-weight: bold;
@@ -202,20 +233,24 @@ footer {
     color: #b3e5fc;
     letter-spacing: 0.5px;
 }
+
 .compress-subtitle {
     font-size: 1rem;
     color: #bdbdbd;
     margin-bottom: 1.2rem;
 }
+
 #upload-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     align-items: center;
 }
+
 #file-input {
     display: none;
 }
+
 .custom-file-label {
     display: inline-block;
     background: linear-gradient(90deg, #00bcd4, #1976d2);
@@ -229,9 +264,11 @@ footer {
     transition: background 0.2s, transform 0.1s;
     box-shadow: 0 2px 8px #0002;
 }
+
 .custom-file-label:hover {
     background: linear-gradient(90deg, #1976d2, #00bcd4);
 }
+
 #compress-btn {
     background: linear-gradient(90deg, #00bcd4, #1976d2);
     color: #fff;
@@ -244,12 +281,15 @@ footer {
     box-shadow: 0 2px 8px #0002;
     transition: background 0.2s, transform 0.1s;
 }
+
 #compress-btn:hover {
     background: linear-gradient(90deg, #1976d2, #00bcd4);
 }
+
 #compress-btn:active {
     transform: scale(0.96);
 }
+
 .selected-file {
     color: #b3e5fc;
     font-size: 0.98rem;
@@ -261,6 +301,7 @@ footer {
     display: block;
     text-align: center;
 }
+
 #download-link {
     display: inline-block;
     background: linear-gradient(90deg, #00bcd4, #1976d2);
@@ -278,17 +319,21 @@ footer {
     transition: background 0.2s, transform 0.1s;
     text-align: center;
 }
+
 #download-link:hover {
     background: linear-gradient(90deg, #1976d2, #00bcd4);
 }
+
 #download-link:active {
     transform: scale(0.96);
 }
+
 #notification {
     margin-top: 1.2rem;
     min-height: 1.5rem;
     text-align: center;
 }
+
 .modal-title {
     font-size: 1.3rem;
     font-weight: bold;
@@ -296,6 +341,7 @@ footer {
     color: #b3e5fc;
     letter-spacing: 0.5px;
 }
+
 .modal-names {
     font-size: 1.08rem;
     color: #fff;
@@ -304,6 +350,7 @@ footer {
     text-align: center;
     line-height: 1.7;
 }
+
 .modal-desc {
     font-size: 1rem;
     color: #bdbdbd;
@@ -311,6 +358,110 @@ footer {
     text-align: center;
     letter-spacing: 0.2px;
 }
+
 .format-list {
     color: #bdbdbd;
-} 
+}
+
+/* Compression Level Options */
+.compression-level {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.level-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #b3e5fc;
+    margin-bottom: 0.8rem;
+    text-align: left;
+}
+
+.level-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.level-option {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1rem;
+    background: #1a1d1f;
+    border: 2px solid #333;
+    border-radius: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.level-option:hover {
+    border-color: #00bcd4;
+    background: #1f2425;
+}
+
+.level-option input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.level-option input[type="radio"]:checked {
+    border-color: #00bcd4;
+    background: #00bcd4;
+}
+
+.level-option input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.level-option:has(input:checked) {
+    border-color: #00bcd4;
+    background: rgba(0, 188, 212, 0.1);
+}
+
+.level-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    min-width: 100px;
+}
+
+.level-desc {
+    font-size: 0.85rem;
+    color: #888;
+    flex: 1;
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+    .level-option {
+        flex-wrap: wrap;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .level-label {
+        min-width: unset;
+    }
+
+    .level-desc {
+        width: 100%;
+        text-align: left;
+        margin-left: 25px;
+        margin-top: 0.2rem;
+    }
+}

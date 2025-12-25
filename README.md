@@ -10,12 +10,11 @@ Aplikasi kompresi data berbasis web dengan backend Python (Flask) dan frontend m
 ## Manual Book Aplikasi (Detail)
 
 ### 1. Deskripsi Singkat
-Kompresin 2.0 adalah aplikasi web yang memudahkan pengguna untuk mengompres berbagai jenis file (gambar, dokumen, video) agar ukurannya lebih kecil, sehingga lebih mudah disimpan dan dibagikan.
+Kompresin 2.0 adalah aplikasi web yang memudahkan pengguna untuk mengompres berbagai jenis file (gambar, dokumen) agar ukurannya lebih kecil, sehingga lebih mudah disimpan dan dibagikan.
 
 ### 2. Fitur Utama
 - Kompresi file gambar (jpg, jpeg, png, gif, bmp)
 - Kompresi file dokumen (pdf, doc, docx, ppt, pptx, xls, xlsx, txt, zip, rar) ke format ZIP
-- Kompresi video (mp4, mov, avi, mkv) *(hanya jika server mendukung ffmpeg)*
 - Tampilan modern, responsif, dan mudah digunakan
 - Progress bar animasi saat proses kompresi
 - Notifikasi hasil kompresi (ukuran awal, akhir, dan persentase pengurangan)
@@ -29,7 +28,7 @@ Kompresin 2.0 adalah aplikasi web yang memudahkan pengguna untuk mengompres berb
 #### B. Memahami Tampilan Utama
 - **Header:** Judul aplikasi dan tombol info pembuat.
 - **Ucapan Selamat Datang:** Penjelasan singkat aplikasi.
-- **Tiga Kotak Format:** Menjelaskan format file yang didukung (file umum, video, gambar).
+- **Dua Kotak Format:** Menjelaskan format file yang didukung (file umum, gambar).
 - **Kotak Kompresi:**
   - Judul dan subjudul.
   - Tombol "Pilih File" (custom, besar, modern).
@@ -55,13 +54,9 @@ Kompresin 2.0 adalah aplikasi web yang memudahkan pengguna untuk mengompres berb
 
 ### 4. Format File yang Didukung
 - **Gambar:** jpg, jpeg, png, gif, bmp
-- **Video:** mp4, mov, avi, mkv *(kompresi video hanya tersedia di server yang mendukung ffmpeg)*
 - **File Umum:** pdf, doc, docx, ppt, pptx, xls, xlsx, txt, zip, rar (akan dikompres ke ZIP)
 
 ### 5. Troubleshooting & Catatan
-- **Kompresi video gagal:**
-  - Server hosting gratis (Render Free, Vercel, dsb) biasanya tidak mendukung ffmpeg. Kompresi video hanya berjalan di server lokal atau VPS yang mendukung ffmpeg.
-  - Jika gagal, gunakan fitur kompresi gambar/dokumen saja.
 - **File terlalu besar gagal upload:**
   - Coba gunakan file yang lebih kecil (<50MB).
 - **Progress bar tidak bergerak:**
