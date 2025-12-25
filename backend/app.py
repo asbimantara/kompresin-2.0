@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file, jsonify
+from flask import Flask, request, send_file, jsonify, send_from_directory
 from flask_cors import CORS
 import os
 import tempfile
@@ -7,7 +7,8 @@ from werkzeug.utils import secure_filename
 from PIL import Image
 import zipfile
 
-app = Flask(__name__)
+# Configure Flask to serve static files from 'static' folder
+app = Flask(__name__, static_folder='static', static_url_path='')
 CORS(app)
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'bmp', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt', 'zip', 'rar'])
@@ -18,7 +19,7 @@ def allowed_file(filename):
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Kompresin 2.0 Backend is running!"})
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/compress', methods=['POST'])
 def compress_file():

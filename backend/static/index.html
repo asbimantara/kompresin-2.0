@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kompresin 2.0</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Kompresin 2.0</h1>
+        <button id="info-btn" title="Informasi">i</button>
+    </header>
+    <main>
+        <h2>Kompresi Data Semua Jenis File</h2>
+        <div class="welcome">Selamat datang di Kompresin 2.0! Silakan upload file untuk dikompres.</div>
+        <div class="format-row">
+            <div class="format-box">
+                <b>File Umum</b><br>
+                <span class="format-list">pdf, doc, docx, ppt, pptx, xls, xlsx, txt, zip, rar</span>
+            </div>
+
+            <div class="format-box">
+                <b>Gambar</b><br>
+                <span class="format-list">jpg, jpeg, png, gif, bmp</span>
+            </div>
+        </div>
+        <section class="upload-section">
+            <div class="compress-title">Upload & Kompres File Anda</div>
+            <div class="compress-subtitle">Mudah & cepat!</div>
+            <form id="upload-form">
+                <div class="compression-level">
+                    <div class="level-title">Pilih Level Kompresi:</div>
+                    <div class="level-options">
+                        <label class="level-option">
+                            <input type="radio" name="level" value="light" id="level-light">
+                            <span class="level-label">🌱 Ringan</span>
+                            <span class="level-desc">Kualitas tinggi, kompresi ~20%</span>
+                        </label>
+                        <label class="level-option">
+                            <input type="radio" name="level" value="normal" id="level-normal" checked>
+                            <span class="level-label">⚖️ Normal</span>
+                            <span class="level-desc">Seimbang, kompresi ~40%</span>
+                        </label>
+                        <label class="level-option">
+                            <input type="radio" name="level" value="max" id="level-max">
+                            <span class="level-label">🔥 Maksimal</span>
+                            <span class="level-desc">Ukuran kecil, kompresi ~60%</span>
+                        </label>
+                    </div>
+                </div>
+                <label for="file-input" class="custom-file-label">Pilih File</label>
+                <span class="selected-file" id="selected-file">Belum ada file dipilih</span>
+                <input type="file" id="file-input" name="file" required>
+                <button type="submit" id="compress-btn">Kompres</button>
+            </form>
+            <div id="progress-bar" style="display:none;"></div>
+            <div id="notification"></div>
+            <a id="download-link" style="display:none;">Download</a>
+        </section>
+    </main>
+    <footer>
+        <span>&copy; 2025 Kompresin 2.0</span>
+    </footer>
+    <div id="info-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 class="modal-title">Pembuat Aplikasi</h3>
+            <div class="modal-names">
+                <span>Ahmad Surya Bimantara</span><br>
+                <span>Abdullah Sallam</span>
+            </div>
+            <div class="modal-desc">Mahasiswa Teknik Informatika<br>UNISNU Jepara</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
